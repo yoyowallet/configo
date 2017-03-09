@@ -4,12 +4,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
+	"syscall"
 
 	. "github.com/ahmetalpbalkan/go-linq"
 	"github.com/op/go-logging"
-	"github.com/yoyowallet/configo/exec"
 	"github.com/yoyowallet/configo/flatmap"
 	"github.com/yoyowallet/configo/sources"
 )
@@ -78,7 +79,14 @@ func main() {
 		panic(err)
 	}
 
-	exec.Execute(strings.Join(os.Args[1:], " "))
+	commandPath, err := exec.LookPath(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+
+	if err = syscall.Exec(commandPath, os.Args[1:], os.Environ()); err != nil {
+		panic(err)
+	}
 }
 
 func resolveAll(environ []string) error {

@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	. "github.com/ahmetalpbalkan/go-linq"
-	"github.com/op/go-logging"
-	"github.com/zeroturnaround/configo/exec"
-	"github.com/zeroturnaround/configo/flatmap"
-	"github.com/zeroturnaround/configo/sources"
 	"os"
 	"strconv"
 	"strings"
+
+	. "github.com/ahmetalpbalkan/go-linq"
+	"github.com/op/go-logging"
+	"github.com/yoyowallet/configo/exec"
+	"github.com/yoyowallet/configo/flatmap"
+	"github.com/yoyowallet/configo/sources"
 )
 
 const envVariablePrefix = "CONFIGO_SOURCE_"

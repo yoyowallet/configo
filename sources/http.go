@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/zeroturnaround/configo/parsers"
+	"github.com/yoyowallet/configo/parsers"
 )
 
 type HTTPSource struct {

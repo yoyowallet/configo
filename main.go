@@ -3,14 +3,16 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	. "github.com/ahmetalpbalkan/go-linq"
-	"github.com/op/go-logging"
-	"github.com/zeroturnaround/configo/exec"
-	"github.com/zeroturnaround/configo/flatmap"
-	"github.com/zeroturnaround/configo/sources"
 	"os"
+	"os/exec"
 	"strconv"
 	"strings"
+	"syscall"
+
+	. "github.com/ahmetalpbalkan/go-linq"
+	"github.com/op/go-logging"
+	"github.com/yoyowallet/configo/flatmap"
+	"github.com/yoyowallet/configo/sources"
 )
 
 const envVariablePrefix = "CONFIGO_SOURCE_"
@@ -77,7 +79,14 @@ func main() {
 		panic(err)
 	}
 
-	exec.Execute(strings.Join(os.Args[1:], " "))
+	commandPath, err := exec.LookPath(os.Args[1])
+	if err != nil {
+		panic(err)
+	}
+
+	if err = syscall.Exec(commandPath, os.Args[1:], os.Environ()); err != nil {
+		panic(err)
+	}
 }
 
 func resolveAll(environ []string) error {

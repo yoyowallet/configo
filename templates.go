@@ -3,12 +3,13 @@ package main
 import (
 	"bytes"
 	"errors"
-	. "github.com/ahmetalpbalkan/go-linq"
-	"github.com/op/go-logging"
-	"github.com/zeroturnaround/configo/parsers"
 	"os"
 	"strings"
 	"text/template"
+
+	. "github.com/ahmetalpbalkan/go-linq"
+	"github.com/op/go-logging"
+	"github.com/yoyowallet/configo/parsers"
 )
 
 const configoPrefix = "CONFIGO:"

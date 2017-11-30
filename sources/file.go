@@ -1,8 +1,9 @@
 package sources
 
 import (
-	"github.com/zeroturnaround/configo/parsers"
 	"io/ioutil"
+
+	"github.com/yoyowallet/configo/parsers"
 )
 
 type FileSource struct {

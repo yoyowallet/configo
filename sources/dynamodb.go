@@ -20,7 +20,7 @@ type DynamoDBSource struct {
 
 func (dynamoDBSource *DynamoDBSource) Get() (map[string]interface{}, error) {
 
-	config := defaults.Config()
+	config := defaults.Get().Config
 
 	if dynamoDBSource.AccessKey != "" {
 		config = config.WithCredentials(credentials.NewCredentials(&credentials.StaticProvider{
